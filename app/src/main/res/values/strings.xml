@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GithubUsers</string>
+    <string name="toolbar_title_user_details">User Details</string>
+    <string name="toast_error_message">Error %s</string>
+    <string name="blog_header">Blog</string>
+    <string name="followers_count">%d \nfollowers</string>
+    <string name="following_count">%d \nfollowing</string>
+</resources>

@@ -1,0 +1,77 @@
+//plugins {
+//    alias(libs.plugins.android.library)
+//    alias(libs.plugins.kotlin.android)
+//    alias(libs.plugins.kotlin.kapt)
+//}
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.tymex.github.data.core'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 26
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.material
+    implementation libs.retrofit
+    implementation libs.moshi
+    implementation libs.retrofit.converter.moshi
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    implementation libs.okhttp.logging
+    implementation libs.androidx.room.runtime
+    implementation libs.androidx.room.ktx
+    annotationProcessor (libs.androidx.room.compiler) {
+        exclude group: 'com.intellij', module: 'annotations'
+    }
+    kapt (libs.androidx.room.compiler) {
+        exclude group: 'com.intellij', module: 'annotations'
+    }
+
+    testImplementation libs.junit
+    testImplementation libs.mockito.core
+    testImplementation libs.mockito.inline
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.turbine
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation libs.hilt.android.testing
+    kaptTest libs.hilt.android.compiler
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

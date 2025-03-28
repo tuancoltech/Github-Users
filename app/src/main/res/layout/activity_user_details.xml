@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/layout_user_card"
+        layout="@layout/row_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_margin"
+        android:layout_marginVertical="@dimen/common_margin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_followers"
+        android:layout_width="@dimen/small_image_view_size"
+        android:layout_height="@dimen/small_image_view_size"
+        android:layout_marginVertical="@dimen/common_margin"
+        app:layout_constraintEnd_toStartOf="@+id/iv_following"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_user_card" />
+
+    <TextView
+        android:id="@+id/tv_followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin"
+        app:layout_constraintEnd_toEndOf="@+id/iv_followers"
+        app:layout_constraintStart_toStartOf="@+id/iv_followers"
+        app:layout_constraintTop_toBottomOf="@+id/iv_followers"
+        tools:text="200" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_following"
+        android:layout_width="@dimen/small_image_view_size"
+        android:layout_height="@dimen/small_image_view_size"
+        android:layout_marginVertical="@dimen/common_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_followers"
+        app:layout_constraintTop_toBottomOf="@+id/layout_user_card" />
+
+    <TextView
+        android:id="@+id/tv_following"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin"
+        app:layout_constraintEnd_toEndOf="@+id/iv_following"
+        app:layout_constraintStart_toStartOf="@+id/iv_following"
+        app:layout_constraintTop_toBottomOf="@+id/iv_followers"
+        tools:text="200" />
+
+    <TextView
+        android:id="@+id/tv_blog_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/common_margin"
+        android:layout_marginTop="50dp"
+        android:text="@string/blog_header"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_following" />
+
+    <TextView
+        android:id="@+id/tv_blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:autoLink="all"
+        app:layout_constraintStart_toStartOf="@+id/tv_blog_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_blog_header"
+        tools:text="This is blog" />
+
+    <include
+        android:id="@+id/pb_loading"
+        layout="@layout/loading_indicator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
