@@ -24,7 +24,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
 
             var isFinalPage = false
             val since = (page - 1) * pageSize
-            Log.i("tuancoltech", "getUsers page: " + page + ". pageSize: " + pageSize + ". since: " + since)
+            Log.d(TAG, "getUsers page: $page"+ ". pageSize: $pageSize"+ ". since: $since")
             val networkResponse: NetworkResponse<List<User>> = try {
                 val response = userService.getUsers(pageSize, since)
                 isFinalPage = response.headers()["Link"]?.isLastPage() ?: false
@@ -52,7 +52,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
         return flow {
             emit(FlowState.Loading)
 
-            Log.i("tuancoltech", "getUserDetails login: " + login)
+            Log.i(TAG, "getUserDetails login: " + login)
             val networkResponse: NetworkResponse<UserDetails> = try {
                 userService.getUserDetails(login).toNetworkResponse()
             } catch (ex: Exception) {
@@ -69,5 +69,9 @@ class UserRemoteDataSourceImpl @Inject constructor(
                 )
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    companion object {
+        private val TAG by lazy { UserRemoteDataSource::class.java.name }
     }
 }
