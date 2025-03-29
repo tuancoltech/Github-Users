@@ -1,6 +1,5 @@
 package com.tymex.github.data.core.data.repository.users
 
-import android.util.Log
 import com.tymex.github.data.core.data.model.FlowState
 import com.tymex.github.data.core.data.model.GetUsersResult
 import com.tymex.github.data.core.data.model.User
@@ -24,7 +23,6 @@ class UserRepositoryImpl @Inject constructor(
             when (localUsersFlow) {
                 is FlowState.Success<*> -> {
                     val localUsers = (localUsersFlow.data as? GetUsersResult)?.users ?: emptyList()
-                    Log.v("tuancoltech", "Got localUsers with size: " + localUsers.size)
                     if (localUsers.isNotEmpty()) {
                         flowOf(localUsersFlow)
                     } else {

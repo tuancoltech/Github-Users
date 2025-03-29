@@ -20,6 +20,7 @@
         android:layout_width="@dimen/small_image_view_size"
         android:layout_height="@dimen/small_image_view_size"
         android:layout_marginVertical="@dimen/common_margin"
+        android:src="@drawable/ic_followers"
         app:layout_constraintEnd_toStartOf="@+id/iv_following"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_user_card" />
@@ -29,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common_margin"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="@+id/iv_followers"
         app:layout_constraintStart_toStartOf="@+id/iv_followers"
         app:layout_constraintTop_toBottomOf="@+id/iv_followers"
@@ -39,6 +41,7 @@
         android:layout_width="@dimen/small_image_view_size"
         android:layout_height="@dimen/small_image_view_size"
         android:layout_marginVertical="@dimen/common_margin"
+        android:src="@drawable/ic_following"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_followers"
         app:layout_constraintTop_toBottomOf="@+id/layout_user_card" />

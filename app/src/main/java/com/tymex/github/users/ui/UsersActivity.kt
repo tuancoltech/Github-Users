@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,14 +15,13 @@ import com.tymex.github.data.core.data.model.FlowState
 import com.tymex.github.data.core.data.model.GetUsersResult
 import com.tymex.github.data.core.viewmodel.UserViewModel
 import com.tymex.github.data.core.viewmodel.UserViewModelImpl
+import com.tymex.github.users.R
 import com.tymex.github.users.databinding.ActivityUsersBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UsersActivity : AppCompatActivity() {
-
-    private val TAG = /*UsersActivity::class.java.simpleName*/"tuancoltech"
+class UsersActivity : BaseActivity() {
 
     private lateinit var usersViewModel: UserViewModel
     private lateinit var binding: ActivityUsersBinding
@@ -34,8 +32,9 @@ class UsersActivity : AppCompatActivity() {
     private var isLoadingMore = false
 
     companion object {
-        private const val PAGE_SIZE = 3
+        private const val PAGE_SIZE = 20
         const val BUNDLE_KEY_LOGIN = "bundle_key_login"
+        private val TAG by lazy { UsersActivity::class.java.simpleName }
     }
 
 
@@ -108,9 +107,9 @@ class UsersActivity : AppCompatActivity() {
             is FlowState.Success<*> -> {
                 binding.pbLoading.root.gone()
                 val getUserResult = flowState.data as? GetUsersResult ?: return
-                Log.i(
-                    TAG,
-                    "getUsers success: " + getUserResult.users.size + ". isFinal: " + getUserResult.isFinalPage + ". curPage: " + currentPage
+                Log.i(TAG,
+                    "getUsers success: " + getUserResult.users.size
+                            + ". isFinal: " + getUserResult.isFinalPage + ". curPage: " + currentPage
                 )
                 hasMore = !getUserResult.isFinalPage
                 isLoadingMore = false
@@ -140,5 +139,9 @@ class UsersActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun getToolbarTitle(): String {
+        return getString(R.string.app_name)
     }
 }

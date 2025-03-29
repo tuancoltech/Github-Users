@@ -30,6 +30,7 @@
             android:layout_marginStart="20dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,17 +38,28 @@
             app:layout_constraintTop_toTopOf="@+id/iv_avatar"
             tools:text="This is a very long text and let's see how long it might take" />
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
         <TextView
             android:id="@+id/tv_url"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:autoLink="all"
             android:ellipsize="end"
             android:maxLines="1"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
             tools:text="https://www.test.com" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -21,9 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class UserDetailsActivity : AppCompatActivity() {
-
-    private val TAG = /*UsersActivity::class.java.simpleName*/"tuancoltech"
+class UserDetailsActivity : BaseActivity() {
 
     private lateinit var usersViewModel: UserViewModel
     private lateinit var binding: ActivityUserDetailsBinding
@@ -32,10 +29,6 @@ class UserDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
-            it.title = getString(R.string.toolbar_title_user_details)
-        }
         initViewModel()
 
         lifecycleScope.launch {
@@ -99,5 +92,13 @@ class UserDetailsActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun getToolbarTitle(): String {
+        return getString(R.string.toolbar_title_user_details)
+    }
+
+    companion object {
+        private val TAG by lazy { UsersActivity::class.java.simpleName }
     }
 }

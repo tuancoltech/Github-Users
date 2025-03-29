@@ -1,6 +1,5 @@
 package com.tymex.github.users.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -15,7 +14,6 @@ class UserAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val user = currentList[position]
-        Log.d("tuancoltech", "onBindViewHolder pos: " + position + ". User: " + user.login)
         (holder as UserHolder).bindItem(user)
     }
 
@@ -42,19 +40,7 @@ class UserAdapter(
 
     fun appendUsers(newUsers: List<User>) {
         val updatedUsers = currentList + newUsers
-        Log.w("tuancoltech", "currentList ---- \n")
-        currentList.printOut()
-        Log.w("tuancoltech", "newUsers ---- \n")
-        newUsers.printOut()
-        Log.w("tuancoltech", "updatedUsers ---- \n")
-        updatedUsers.printOut()
         setData(updatedUsers)
-    }
-
-    private fun List<User>.printOut() {
-        for (idx in this.indices) {
-            Log.v("tuancoltech", "IDX: " + idx + " is " + this[idx].login)
-        }
     }
 
     class UserHolder(
