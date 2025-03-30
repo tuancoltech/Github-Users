@@ -22,9 +22,8 @@ class UserLocalDataSourceImpl @Inject constructor(
         return flow {
             emit(FlowState.Loading)
             val since = (page - 1) * pageSize
-            Log.d(
-                TAG,
-                "getUsers page: " + page + ". pageSize: " + pageSize + ". since: " + since
+            Log.d(TAG,
+                "getUsers page: $page. pageSize: $pageSize. since: $since"
             )
             try {
                 val response = userDao.getUsers(pageSize, since)

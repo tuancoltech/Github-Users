@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.tymex.github.users.databinding.CustomActionbarTitleBinding
+import com.tymex.github.users.databinding.ToolbarBinding
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -12,12 +12,15 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.let {
-            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayHomeAsUpEnabled(false)
             it.setDisplayShowTitleEnabled(false)
             it.setDisplayShowCustomEnabled(true)
 
-            val titleBinding = CustomActionbarTitleBinding.inflate(layoutInflater)
-            titleBinding.root.text = getToolbarTitle()
+            val titleBinding = ToolbarBinding.inflate(layoutInflater)
+            titleBinding.tvTitle.text = getToolbarTitle()
+            titleBinding.ivBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
             val actionBarParams = ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.WRAP_CONTENT,
@@ -25,7 +28,16 @@ abstract class BaseActivity : AppCompatActivity() {
             )
             it.setCustomView(titleBinding.root, actionBarParams)
         }
+
+        window.apply {
+            setLightStatusBar()
+            setStatusBarColorCompat(android.R.color.white)
+        }
+
     }
 
+    /**
+     * Override this to set Toolbar's title text
+     */
     abstract fun getToolbarTitle(): String
 }
