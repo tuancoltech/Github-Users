@@ -42,7 +42,6 @@ class UsersActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initUsersList()
         initViewModel()
 
@@ -98,6 +97,9 @@ class UsersActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Parse users data from [FlowState] to inflate into list view
+     */
     private fun handleUsersFlow(flowState: FlowState) {
         when (flowState) {
             is FlowState.Loading -> {

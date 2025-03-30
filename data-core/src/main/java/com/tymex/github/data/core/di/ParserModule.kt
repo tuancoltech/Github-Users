@@ -15,9 +15,4 @@ class ParserModule {
     @Singleton
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
-
-    @Singleton
-    @Provides
-    fun provideJsonHelper(moshi: Moshi): JsonHelper = JsonHelper(moshi)
 }

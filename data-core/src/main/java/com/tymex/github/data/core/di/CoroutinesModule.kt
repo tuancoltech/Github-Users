@@ -16,15 +16,7 @@ annotation class IoScope
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
-annotation class DefaultScope
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
 annotation class MainScope
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-annotation class ApplicationScope
 
 @Module
 @InstallIn(SingletonComponent::class)

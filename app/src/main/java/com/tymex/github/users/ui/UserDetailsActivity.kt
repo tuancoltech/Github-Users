@@ -46,6 +46,10 @@ class UserDetailsActivity : BaseActivity() {
         usersViewModel = ViewModelProvider(this)[UserViewModelImpl::class.java]
     }
 
+
+    /**
+     * Parse & display user details from a [FlowState]
+     */
     private fun handleUserDetailsFlow(flowState: FlowState) {
         when (flowState) {
             is FlowState.Loading -> {
